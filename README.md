@@ -23,7 +23,12 @@
   - [Features](#features)
     - [Existing Features](#existing-features)
     - [Features Left to Implement](#features-left-to-implement)
+  - [Database Model](#database-model)
   - [Technologies Used](#technologies-used)
+    - [Other Tech](#other-tech)
+      - [*Windows Snipping Tool*](#windows-snipping-tool)
+      - [*Visual Studio Code*](#visual-studio-code)
+      - [VSCode Extensions](#vscode-extensions)
   - [Testing](#testing)
   - [Bugs](#bugs)
     - [Current](#current)
@@ -46,10 +51,11 @@ This site is to represent capabilities with the Django Rest Framework. It should
 employ full Create, Read, Update, Delete (CRUD) functionality via DRF.
 
 The assessment checklist is available to view in the
-[`docs/` directory](https://github.com/DaveyJH/ci-portfolio-five/tree/main/docs)
+[`docs/` directory](https://github.com/DaveyJH/backgammon-back-end/tree/main/docs)
 of the project repository.
 
-***The needs within this project are not genuine and are made purely for the purpose of completing my Code Institute project***
+***The needs within this project are not genuine and are made purely for the
+purpose of completing my Code Institute project.***
 
 ***
 
@@ -57,9 +63,17 @@ of the project repository.
 
 ### Tactical Rashers API
 
-Tactical Rashers : a backgammon players' site. The site should allow users to play backgammon in a manner similar to ["Chess by post"](https://en.wikipedia.org/wiki/Correspondence_chess). Users will be able to play private games, with dice rolls handled via the app, and comment with their intended moves. They should be able to update the main image of the game to the latest state of a board and should be able to declare a winner.
+Tactical Rashers : a backgammon players' site. The site should allow users to
+play backgammon in a manner similar to
+["Chess by post"](https://en.wikipedia.org/wiki/Correspondence_chess). Users
+will be able to play private games, with dice rolls handled via the app, and
+comment with their intended moves. They should be able to update the main image
+of the game to the latest state of a board and should be able to declare a
+winner.
 
-Full CRUD functionality should be available to allow users to interact appropriately with the various aspects of the finished application. This repo intends to provide a robust back-end API via the Django Rest Framework.
+Full CRUD functionality should be available to allow users to interact
+appropriately with the various aspects of the finished application. This repo
+intends to provide a robust back-end API via the Django Rest Framework.
 
 ***
 
@@ -142,13 +156,52 @@ F2
   - Explanation of feature need etc. -->
 ***
 
+## Database Model
+
+A PostgreSQL database has been used for storing the various data required for
+the API.
+
+The database structure has been mapped out using an ERD diagram generated using
+the [drawio](#vscode-extensions) extension in VSCode. Many of the entities will be linked
+back through the owner (Django auth's `User` model) which allows the database to
+have a straightforward structure.
+
+![entity relationship diagram](./docs/assets/images/erd-v1.png)
+
+***
+
 ## Technologies Used
 
-<!-- tech used -->
-<!-- - *[techNameOne](techURL)*
-       - Description -->
-<!-- - *[techNameTwo](techURL)*
-       - Description -->
+### Other Tech
+
+<!-- #### ScreenToGif -->
+
+#### *[Windows Snipping Tool](https://support.microsoft.com/en-us/windows/use-snipping-tool-to-capture-screenshots-00246869-1843-655f-f220-97299b865f6b)*
+
+A screenshot tool built into Windows. It allows quick, partial screenshots
+to be taken that can be saved as image files.
+
+#### *[Visual Studio Code](https://code.visualstudio.com/)*
+
+A free, streamlined code editor. The [extensions](#vscode-extensions)
+available have allowed me to customize my workspace and become more
+efficient.
+
+#### VSCode Extensions
+
+Links to the VSCode marketplace for each extension used throughout this project:
+
+- [Python](https://marketplace.visualstudio.com/items?itemName=ms-python.python)
+- [Better Comments](https://marketplace.visualstudio.com/items?itemName=aaron-bond.better-comments)
+- [GitHub Pull Request and Issue Provider](https://marketplace.visualstudio.com/items?itemName=GitHub.vscode-pull-request-github)
+- [Highlight Matching Tag](https://marketplace.visualstudio.com/items?itemName=vincaslt.highlight-matching-tag)
+- [Markdown All in One](https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one)
+- [markdownlint](https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint)
+- [Reflow Markdown](https://marketplace.visualstudio.com/items?itemName=marvhen.reflow-markdown)
+- [flake8](https://marketplace.visualstudio.com/items?itemName=ms-python.flake8)
+- [Code Spell Checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker)
+- [Django](https://marketplace.visualstudio.com/items?itemName=batisteo.vscode-django)
+- [Draw.io](https://marketplace.visualstudio.com/items?itemName=hediet.vscode-drawio)
 
 ## Testing
 
@@ -209,12 +262,12 @@ To clone the repo please see the steps below.
 
 - Sign in to GitHub.
 
-![GitHub dashboard](./docs/readme/assets/images/github-dashboard.png)
+![GitHub dashboard](./docs/assets/images/github-dashboard.png)
 
 - Navigate to the repository at https://github.com/DaveyJH/backgammon-back-end,
   click **&#60;&#62; Code &#9662;** and copy the URL provided.
 
-![GitHub dashboard](./docs/readme/assets/images/clone-repo.png)
+![GitHub dashboard](./docs/assets/images/clone-repo.png)
 
 - Proceed to your chosen method of cloning a repo and provide the copied URL
   when needed.
@@ -228,23 +281,23 @@ the relevant docs for various approaches.
 - Open a `bash` terminal within VSCode and navigate to a parent directory for
   your repository.
 
-![bash terminal](./docs/readme/assets/images/bash-terminal.png)
+![bash terminal](./docs/assets/images/bash-terminal.png)
 
 - Enter `git clone https://github.com/DaveyJH/backgammon-back-end.git` (the URL
   copied from GitHub). This will clone the repository into a new
   directory called `backgammon-back-end`.
 
-![clone command](./docs/readme/assets/images/clone-command.png)
+![clone command](./docs/assets/images/clone-command.png)
 
 - Enter the `cd backgammon-back-end code . -r` to open the repository in the
   current VSCode window.
 
-![open in VSCode command](./docs/readme/assets/images/cd-backgammon-back-end.png)
+![open in VSCode command](./docs/assets/images/cd-backgammon-back-end.png)
 
 - Create and activate a virtual environment within the directory. I use `venv`
   for this via `python -m venv .venv && . .venv/scripts/activate`.
 
-![venv creation and activation](./docs/readme/assets/images/venv-creation-and-activation.png)
+![venv creation and activation](./docs/assets/images/venv-creation-and-activation.png)
 
 - Install the requirements for the repository using
   `pip install -r requirements.txt`.
