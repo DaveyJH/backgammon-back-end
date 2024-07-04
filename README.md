@@ -345,7 +345,7 @@ The site is now live and operational -->
 <!-- - the a comes from b -->
 <!-- - the c comes from d -->
 ### Media
-<!-- - the a comes from b -->
+<!-- <a href="https://www.freepik.com/free-vector/illustration-summer-beach-object_2825295.htm#fromView=search&page=1&position=35&uuid=7af1b0c9-0057-4517-95e7-a4f45d178e31">Two dice image by rawpixel.com on Freepik</a> -->
 <!-- - the c comes from d -->
 ### Acknowledgements
 <!-- - acknowledge a, found at [b](bURL), for c -->

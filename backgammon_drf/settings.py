@@ -20,19 +20,14 @@ load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
+# Required settings / environment variables
 SECRET_KEY = os.environ.get("SECRET_KEY")
 
 DEVELOPMENT = "DEVELOPMENT" in os.environ
-HOST = os.environ.get("HOST")
 DEBUG = "DEBUG" in os.environ
 
+HOST = os.environ.get("HOST")
 ALLOWED_HOSTS = [HOST,]
-
 
 # Application definition
 
@@ -45,6 +40,8 @@ INSTALLED_APPS = [
     "cloudinary_storage",
     'django.contrib.staticfiles',
     "cloudinary",
+
+    "profiles",
 ]
 
 MIDDLEWARE = [
