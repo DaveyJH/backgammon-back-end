@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     "winners",
     "games",
     "dice",
+    "moves",
 ]
 
 MIDDLEWARE = [

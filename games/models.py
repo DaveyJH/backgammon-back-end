@@ -26,6 +26,8 @@ class Game(models.Model):
         Winner,
         on_delete=models.CASCADE,
         related_name='winner',
+        blank=True,
+        null=True,
     )
     active = models.BooleanField(default=True)
 
@@ -33,4 +35,4 @@ class Game(models.Model):
         ordering = ['-updated_at']
 
     def __str__(self):
-        return f'Game #{self.id}'
+        return f'Game #{self.id} : {self.player1} vs {self.player2}'
