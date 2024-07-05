@@ -13,7 +13,6 @@ class GameList(ListCreateAPIView):
     filter_backends = [
         SearchFilter,
         DjangoFilterBackend
-        # todo - add ordering with number of moves (multiple files)
     ]
     filterset_class = GameFilter
     search_fields = [
@@ -29,7 +28,6 @@ class GameDetail(RetrieveUpdateAPIView):
     filter_backends = [
         SearchFilter,
         DjangoFilterBackend
-        # todo - add ordering with number of moves (multiple files)
     ]
     filterset_class = GameFilter
     search_fields = [
