@@ -237,7 +237,9 @@ look at daisy's testing documentation and [webinar](https://us02web.zoom.us/rec/
 ### Resolved
 
 <!-- resolved bugs -->
-<!-- 1. bugOne
+<!-- todo 1. game must have a winner selected
+
+solve with null/blank = True
 
 ![bugOneImg](bugOneImgURL)
 
