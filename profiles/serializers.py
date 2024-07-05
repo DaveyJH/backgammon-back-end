@@ -10,6 +10,7 @@ class ProfileSerializer(serializers.ModelSerializer):
     finished_games_count = serializers.SerializerMethodField()
     total_games_count = serializers.SerializerMethodField()
     total_wins_count = serializers.SerializerMethodField()
+    total_moves_made = serializers.SerializerMethodField()
 
     def get_active_games_count(self, obj):
         return Game.objects.filter(
@@ -45,6 +46,9 @@ class ProfileSerializer(serializers.ModelSerializer):
         request = self.context["request"]
         return request.user == obj.owner
 
+    def get_total_moves_made(self, obj):
+        return obj.owner.moves.count()
+
     class Meta:
         model = Profile
         fields = [
@@ -57,4 +61,5 @@ class ProfileSerializer(serializers.ModelSerializer):
             "finished_games_count",
             "total_games_count",
             "total_wins_count",
+            "total_moves_made",
         ]
