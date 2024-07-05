@@ -166,7 +166,7 @@ the [drawio](#vscode-extensions) extension in VSCode. Many of the entities will 
 back through the owner (Django auth's `User` model) which allows the database to
 have a straightforward structure.
 
-![entity relationship diagram](./docs/assets/images/erd-v1.png)
+![entity relationship diagram](./docs/assets/images/erd-v1.1.png)
 
 ***
 
