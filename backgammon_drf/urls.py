@@ -21,5 +21,6 @@ urlpatterns = [
     path("", root_route),
     path('admin/', admin.site.urls),
     path("", include("profiles.urls")),
+    path("", include("games.urls")),
     path("", include("winners.urls")),
 ]
