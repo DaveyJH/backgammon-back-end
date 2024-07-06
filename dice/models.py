@@ -21,6 +21,7 @@ class DiceRoll(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     def save(self, *args, **kwargs):
+        """Generate random values for the dice rolls."""
         if not self.pk:
             self.value1 = randint(1, 6)
             self.value2 = randint(1, 6)

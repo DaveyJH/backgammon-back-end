@@ -32,15 +32,15 @@ class GameFilter(FilterSet):
         label="Active game?",
         field_name="active",
         choices=(
-            (True, "Yes"),
-            (False, "No"),
+            (True, "yes"),
+            (False, "no"),
         )
     )
 
     def __init__(self, *args, **kwargs):
+        """Initialize the filter with the list of profiles."""
         super().__init__(*args, **kwargs)
         profiles = Profile.objects.all().order_by("owner")
-        # Create choices dynamically
         filters = [
             "player1",
             "player2",

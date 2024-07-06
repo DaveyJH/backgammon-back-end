@@ -1,7 +1,4 @@
-from django_filters.rest_framework import (
-    ChoiceFilter,
-    FilterSet
-)
+from django_filters.rest_framework import ChoiceFilter, FilterSet
 from .models import DiceRoll
 from games.models import Game
 
@@ -14,9 +11,9 @@ class DiceRollFilter(FilterSet):
     )
 
     def __init__(self, *args, **kwargs):
+        """Initialize the filter with the list of games."""
         super().__init__(*args, **kwargs)
         games = Game.objects.all().order_by("id")
-        # Create choices dynamically
         self.filters["game"].extra['choices'] = [
             (
                 game.id,

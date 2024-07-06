@@ -39,6 +39,7 @@ class GameDetail(RetrieveUpdateAPIView):
     ]
 
     def perform_update(self, serializer):
+        """Update a game unless players are changed."""
         if (
             self.get_object().player1 != self.request.data["player1"]
             or self.get_object().player2 != self.request.data["player2"]

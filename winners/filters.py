@@ -20,10 +20,10 @@ class WinnerFilter(FilterSet):
     )
 
     def __init__(self, *args, **kwargs):
+        """Initialize the filter with the list of profiles and games."""
         super().__init__(*args, **kwargs)
         profiles = Profile.objects.all().order_by("owner")
         games = Game.objects.all().order_by("id")
-        # Create choices dynamically
         self.filters["winner"].extra['choices'] = [
             (
                 profile.owner.id,

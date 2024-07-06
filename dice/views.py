@@ -22,11 +22,14 @@ class DiceList(ListCreateAPIView):
     ]
 
     def perform_create(self, serializer):
+        """Create a dice roll."""
         game_obj = serializer.validated_data['game']
 
+        # Check if the user is a player in the game
         if self.request.user not in [game_obj.player1, game_obj.player2]:
             raise PermissionDenied("You are not a player in this game.")
 
+        # Check if it is the user's turn
         if (
             game_obj.dice_rolls.exists()
             and game_obj.dice_rolls.latest('created_at').owner

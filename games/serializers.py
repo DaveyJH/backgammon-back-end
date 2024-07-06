@@ -13,6 +13,7 @@ class GameSerializer(serializers.ModelSerializer):
     def get_all_moves(self, obj):
         return obj.moves.all().values()
 
+    # except blocks needed in event of no records
     def get_latest_move_id(self, obj):
         try:
             return obj.moves.latest("updated_at").id

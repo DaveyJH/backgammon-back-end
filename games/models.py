@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 
 
 class Game(models.Model):
-    """Game model with two players and a winner."""
+    """Game model with two players."""
     player1 = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
