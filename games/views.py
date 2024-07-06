@@ -23,6 +23,17 @@ class GameList(ListCreateAPIView):
         "player2__username",
     ]
 
+    def perform_create(self, serializer):
+        """Create a game that includes the currently logged in user."""
+        if str(self.request.user.id) not in (
+                self.request.data["player1"],
+                self.request.data["player2"]
+        ):
+            raise PermissionDenied("You cannot create games for others.")
+        if self.request.data["player1"] == self.request.data["player2"]:
+            raise PermissionDenied("Players must be unique.")
+        serializer.save(player1=self.request.user)
+
 
 class GameDetail(RetrieveUpdateAPIView):
     serializer_class = GameSerializer
@@ -41,8 +52,10 @@ class GameDetail(RetrieveUpdateAPIView):
     def perform_update(self, serializer):
         """Update a game unless players are changed."""
         if (
-            self.get_object().player1 != self.request.data["player1"]
-            or self.get_object().player2 != self.request.data["player2"]
+            self.get_object().player1.id
+                != int(self.request.data["player1"])
+                or self.get_object().player2.id
+                != int(self.request.data["player2"])
         ):
             raise PermissionDenied("You cannot change a game's players.")
         return super().perform_update(serializer)
