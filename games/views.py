@@ -1,5 +1,6 @@
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateAPIView
 from rest_framework.filters import SearchFilter
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from django_filters.rest_framework import DjangoFilterBackend
 from backgammon_drf.permissions import IsPlayerOrReadOnly
 from .models import Game
@@ -9,6 +10,7 @@ from .filters import GameFilter
 
 class GameList(ListCreateAPIView):
     serializer_class = GameSerializer
+    permission_classes = [IsAuthenticatedOrReadOnly]
     queryset = Game.objects.all()
     filter_backends = [
         SearchFilter,

@@ -27,6 +27,7 @@ class GameSerializer(serializers.ModelSerializer):
     class Meta:
         model = Game
         fields = [
+            "id",
             "player1",
             "player2",
             "created_at",
@@ -37,4 +38,15 @@ class GameSerializer(serializers.ModelSerializer):
             "all_moves",
             "latest_move_id",
             "time_since_last_move",
+            "dice_rolls",
+        ]
+        read_only_fields = [
+            "id",
+            "created_at",
+            "updated_at",
+            "active",
+            "all_moves",
+            "latest_move_id",
+            "time_since_last_move",
+            "dice_rolls",
         ]
