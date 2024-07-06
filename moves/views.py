@@ -31,8 +31,10 @@ class MoveList(generics.ListCreateAPIView):
 
     def perform_create(self, serializer):
         game_obj = serializer.validated_data['game']
-
-        if self.request.user not in [game_obj.player1, game_obj.player2]:
+        if (
+            not game_obj.active
+            or self.request.user not in [game_obj.player1, game_obj.player2]
+        ):
             raise PermissionDenied("You are not a player in this game.")
 
         serializer.save(owner=self.request.user)
