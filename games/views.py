@@ -1,6 +1,7 @@
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateAPIView
 from rest_framework.filters import SearchFilter
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from rest_framework.exceptions import PermissionDenied
 from django_filters.rest_framework import DjangoFilterBackend
 from backgammon_drf.permissions import IsPlayerOrReadOnly
 from .models import Game
@@ -36,3 +37,11 @@ class GameDetail(RetrieveUpdateAPIView):
         "player1__username",
         "player2__username",
     ]
+
+    def perform_update(self, serializer):
+        if (
+            self.get_object().player1 != self.request.data["player1"]
+            or self.get_object().player2 != self.request.data["player2"]
+        ):
+            raise PermissionDenied("You cannot change a game's players.")
+        return super().perform_update(serializer)
