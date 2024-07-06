@@ -16,3 +16,6 @@ class Winner(models.Model):
         related_name='winner',
         unique=True,
     )
+
+    class Meta:
+        ordering = ["game__id"]
