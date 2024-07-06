@@ -1,4 +1,8 @@
-from rest_framework import generics, filters
+from rest_framework.generics import (
+    ListCreateAPIView,
+    RetrieveUpdateDestroyAPIView
+)
+from rest_framework.filters import SearchFilter
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework.exceptions import PermissionDenied
 from django_filters.rest_framework import DjangoFilterBackend
@@ -11,20 +15,15 @@ from .serializers import MoveSerializer
 from .filters import MoveFilter
 
 
-class MoveList(generics.ListCreateAPIView):
+class MoveList(ListCreateAPIView):
     serializer_class = MoveSerializer
     permission_classes = [IsAuthenticatedOrReadOnly]
     queryset = Move.objects.all().order_by("-updated_at")
     filter_backends = [
-        filters.OrderingFilter,
-        filters.SearchFilter,
+        SearchFilter,
         DjangoFilterBackend
     ]
     filterset_class = MoveFilter
-    ordering_fields = [
-        "game",
-        "updated_at",
-    ]
     search_fields = [
         "owner__username",
     ]
@@ -40,7 +39,7 @@ class MoveList(generics.ListCreateAPIView):
         serializer.save(owner=self.request.user)
 
 
-class MoveDetail(generics.RetrieveUpdateDestroyAPIView):
+class MoveDetail(RetrieveUpdateDestroyAPIView):
     serializer_class = MoveSerializer
     permission_classes = [IsOwnerOrReadOnly, IsMostRecentMove]
     queryset = Move.objects.all()
