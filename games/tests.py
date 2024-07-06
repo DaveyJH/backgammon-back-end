@@ -3,6 +3,7 @@ from rest_framework.test import APITestCase
 from backgammon_drf.test_setup import (
     create_three_users,
     create_test_user_1_vs_test_user_2_game,
+    create_test_user_1_vs_test_user_99_game,
     create_test_user_2_vs_test_user_99_game,
 )
 
@@ -103,6 +104,48 @@ class GameListViewTests(APITestCase):
             response.status_code,
             status.HTTP_403_FORBIDDEN
         )
+
+    def test_player_1_filter_works_as_expected(self):
+        create_test_user_1_vs_test_user_2_game()
+        create_test_user_1_vs_test_user_99_game()
+        create_test_user_2_vs_test_user_99_game()
+        response = self.client.get("/games/?player1=1")
+        self.assertEqual(len(response.data["results"]), 2)
+        self.assertEqual(response.data["count"], 2)
+        self.assertEqual(response.data["results"][0]["player1"], 1)
+        self.assertEqual(response.data["results"][0]["player1"], 1)
+
+    def test_player_2_filter_works_as_expected(self):
+        create_test_user_1_vs_test_user_2_game()
+        create_test_user_1_vs_test_user_99_game()
+        create_test_user_2_vs_test_user_99_game()
+        response = self.client.get("/games/?player2=2")
+        self.assertEqual(len(response.data["results"]), 1)
+        self.assertEqual(response.data["count"], 1)
+        self.assertEqual(response.data["results"][0]["player2"], 2)
+
+    def test_active_filter_works_as_expected(self):
+        create_test_user_1_vs_test_user_2_game()
+        create_test_user_1_vs_test_user_99_game()
+        create_test_user_2_vs_test_user_99_game()
+        self.client.login(username="test_user_1", password="test_pass")
+        self.client.put("/games/1/", {
+            "player1": 1, "player2": 2, "active": False
+        })
+        response = self.client.get("/games/?is_active=True")
+        self.assertEqual(len(response.data["results"]), 2)
+        self.assertEqual(response.data["count"], 2)
+        response = self.client.get("/games/?is_active=False")
+        self.assertEqual(len(response.data["results"]), 1)
+        self.assertEqual(response.data["count"], 1)
+
+    def test_either_player_filter_works_as_expected(self):
+        create_test_user_1_vs_test_user_2_game()
+        create_test_user_1_vs_test_user_99_game()
+        create_test_user_2_vs_test_user_99_game()
+        response = self.client.get("/games/?either_player=3")
+        self.assertEqual(len(response.data["results"]), 2)
+        self.assertEqual(response.data["count"], 2)
 
 
 class GameDetailViewTests(APITestCase):
