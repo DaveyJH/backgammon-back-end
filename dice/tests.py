@@ -74,10 +74,18 @@ class DiceRollListViewTests(APITestCase):
 
     def test_logged_in_user_cannot_update_dice_roll(self):
         self.client.login(username="test_user_1", password="test_pass")
-        response = self.client.put("/dice/", {"game": 1, "value1": 6})
+        response = self.client.put("/dice/1/", {"game": 1, "value1": 6})
         self.assertEqual(
             response.status_code,
-            status.HTTP_405_METHOD_NOT_ALLOWED
+            status.HTTP_404_NOT_FOUND
+        )
+
+    def test_logged_in_user_cannot_delete_dice_roll(self):
+        self.client.login(username="test_user_1", password="test_pass")
+        response = self.client.delete("/dice/1/")
+        self.assertEqual(
+            response.status_code,
+            status.HTTP_404_NOT_FOUND
         )
 
     def test_dice_roll_cannot_be_set_by_user(self):
