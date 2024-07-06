@@ -59,6 +59,9 @@ REST_AUTH_SERIALIZERS = {
         'backgammon_drf.serializers.CurrentUserSerializer'
 }
 
+# Silence warning regarding ForeignKey with unique=True
+SILENCED_SYSTEM_CHECKS = ["fields.W342"]
+
 # Application definition
 
 INSTALLED_APPS = [
