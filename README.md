@@ -245,7 +245,10 @@ solve with null/blank = True
 
 *Commit - **[sha](commit link with highlighted lines)** - explanation of fix* -->
 ***
-<!-- 1. bugTwo
+<!-- todo user could post to game they were not a part of
+
+solved with custom create method instead of use of custom permissions (no good
+for create)
 
 ![bugTwoImg](bugTwoImgURL)
 
