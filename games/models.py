@@ -1,6 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import User
-from winners.models import Winner
 
 
 class Game(models.Model):
@@ -22,17 +21,10 @@ class Game(models.Model):
         default='../default/backgammon-starting-board-with-direction_jqwtuy',
         blank=True,
     )
-    winner = models.ForeignKey(
-        Winner,
-        on_delete=models.CASCADE,
-        related_name='winner',
-        blank=True,
-        null=True,
-    )
     active = models.BooleanField(default=True)
 
     class Meta:
         ordering = ['-updated_at']
 
     def __str__(self):
-        return f'Game #{self.id} : {self.player1} vs {self.player2}'
+        return f'Game #{self.id} : {self.player1} vs. {self.player2}'

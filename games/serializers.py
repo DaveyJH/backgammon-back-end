@@ -8,6 +8,7 @@ class GameSerializer(serializers.ModelSerializer):
     all_moves = serializers.SerializerMethodField()
     latest_move_id = serializers.SerializerMethodField()
     time_since_last_move = serializers.SerializerMethodField()
+    winner = serializers.SerializerMethodField()
 
     def get_all_moves(self, obj):
         return obj.moves.all().values()
@@ -22,6 +23,12 @@ class GameSerializer(serializers.ModelSerializer):
         try:
             return naturaltime(obj.moves.latest("updated_at").updated_at)
         except Move.DoesNotExist:
+            return None
+
+    def get_winner(self, obj):
+        try:
+            return obj.winner.first().id
+        except AttributeError:
             return None
 
     class Meta:
@@ -44,7 +51,7 @@ class GameSerializer(serializers.ModelSerializer):
             "id",
             "created_at",
             "updated_at",
-            "active",
+            "winner",
             "all_moves",
             "latest_move_id",
             "time_since_last_move",

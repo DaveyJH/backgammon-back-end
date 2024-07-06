@@ -3,7 +3,6 @@ from .models import Winner
 
 
 class WinnerSerializer(serializers.ModelSerializer):
-    owner = serializers.ReadOnlyField(source="owner.username")
     is_owner = serializers.SerializerMethodField()
 
     def get_is_owner(self, obj):
@@ -16,4 +15,5 @@ class WinnerSerializer(serializers.ModelSerializer):
             "id",
             "owner",
             "is_owner",
+            "game",
         ]

@@ -4,6 +4,7 @@ from django_filters.rest_framework import (
 )
 from .models import Winner
 from profiles.models import Profile
+from games.models import Game
 
 
 class WinnerFilter(FilterSet):
@@ -12,16 +13,28 @@ class WinnerFilter(FilterSet):
         field_name="owner__profile",
         choices=[]
     )
+    game = ChoiceFilter(
+        label="Game",
+        field_name="game",
+        choices=[]
+    )
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         profiles = Profile.objects.all().order_by("owner")
+        games = Game.objects.all().order_by("id")
         # Create choices dynamically
         self.filters["winner"].extra['choices'] = [
             (
                 profile.owner.id,
                 profile.owner.username
             ) for profile in profiles
+        ]
+        self.filters["game"].extra['choices'] = [
+            (
+                game.id,
+                game
+            ) for game in games
         ]
 
     class Meta:
