@@ -11,8 +11,8 @@ from .settings import (
 @api_view()
 def root_route(_):
     return Response({
-        "message": "Welcome to the Tactical Rashers API\n"
-        "Please checkout the documentation at"
+        "message": "Welcome to the Tactical Rashers API. "
+        "Please checkout the documentation at "
         "https://github.com/DaveyJH/backgammon-back-end.git",
     })
 
