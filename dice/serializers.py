@@ -3,8 +3,6 @@ from .models import DiceRoll
 
 
 class DiceRollSerializer(serializers.ModelSerializer):
-    value1 = serializers.IntegerField(read_only=True)
-    value2 = serializers.IntegerField(read_only=True)
 
     class Meta:
         model = DiceRoll
@@ -13,4 +11,13 @@ class DiceRollSerializer(serializers.ModelSerializer):
             "game",
             "value1",
             "value2",
+            "owner",
+            "created_at",
+        ]
+        read_only_fields = [
+            "id",
+            "value1",
+            "value2",
+            "created_at",
+            "owner",
         ]
