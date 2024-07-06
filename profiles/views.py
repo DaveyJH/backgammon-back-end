@@ -10,7 +10,7 @@ class ProfileList(generics.ListAPIView):
     queryset = Profile.objects.all()
 
 
-class ProfileDetail(generics.RetrieveUpdateDestroyAPIView):
+class ProfileDetail(generics.RetrieveUpdateAPIView):
     """Profile detail."""
     serializer_class = ProfileSerializer
     permission_classes = [IsOwnerOrReadOnly]
