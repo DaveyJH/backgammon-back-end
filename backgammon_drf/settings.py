@@ -29,6 +29,35 @@ DEBUG = "DEBUG" in os.environ
 HOST = os.environ.get("HOST")
 ALLOWED_HOSTS = [HOST,]
 
+# DRF settings
+
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": [(
+        "rest_framework.authentication.SessionAuthentication" if DEVELOPMENT
+        else "dj_rest_auth.jwt_auth.JWTCookieAuthentication"
+    )],
+    "DEFAULT_PAGINATION_CLASS":
+        "rest_framework.pagination.PageNumberPagination",
+    "PAGE_SIZE": 10,
+    "DATETIME_FORMAT": "%d %b %Y",
+}
+
+if not DEBUG:
+    REST_FRAMEWORK["DEFAULT_RENDERER_CLASSES"] = [
+
+        "rest_framework.renderers.JSONRenderer",
+    ]
+
+REST_USE_JWT = True
+JWT_AUTH_SECURE = True  # https only
+JWT_AUTH_COOKIE = 'my-app-auth'
+JWT_AUTH_REFRESH_COOKIE = 'my-refresh-token'
+JWT_AUTH_SAMESITE = 'None'
+
+REST_AUTH_SERIALIZERS = {
+    'USER_DETAILS_SERIALIZER': 'drf_api.serializers.CurrentUserSerializer'
+}
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -43,6 +72,15 @@ INSTALLED_APPS = [
     "rest_framework",
     "django_filters",
 
+    "rest_framework.authtoken",
+    "dj_rest_auth",
+    "django.contrib.sites",
+    "allauth",
+    "allauth.account",
+    "allauth.socialaccount",
+    "dj_rest_auth.registration",
+    "corsheaders",
+
     "profiles",
     "winners",
     "games",
@@ -50,7 +88,10 @@ INSTALLED_APPS = [
     "moves",
 ]
 
+SITE_ID = 1
+
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -59,6 +100,11 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+CORS_ALLOWED_ORIGINS = [
+    os.environ.get('CLIENT_ORIGIN') if 'CLIENT_ORIGIN' in os.environ
+    else os.environ.get('CLIENT_ORIGIN_DEV')
+]
+CORS_ALLOW_CREDENTIALS = True
 
 ROOT_URLCONF = 'backgammon_drf.urls'
 
@@ -103,19 +149,19 @@ else:
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.'
-        'UserAttributeSimilarityValidator',
+                'UserAttributeSimilarityValidator',
     },
     {
         'NAME': 'django.contrib.auth.password_validation.'
-        'MinimumLengthValidator',
+                'MinimumLengthValidator',
     },
     {
         'NAME': 'django.contrib.auth.password_validation.'
-        'CommonPasswordValidator',
+                'CommonPasswordValidator',
     },
     {
         'NAME': 'django.contrib.auth.password_validation.'
-        'NumericPasswordValidator',
+                'NumericPasswordValidator',
     },
 ]
 
