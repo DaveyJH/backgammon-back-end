@@ -45,3 +45,8 @@ class MoveDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = MoveSerializer
     permission_classes = [IsOwnerOrReadOnly, IsMostRecentMove]
     queryset = Move.objects.all().order_by("-updated_at")
+
+    def perform_update(self, serializer):
+        if self.get_object().game.id != int(self.request.data["game"]):
+            raise PermissionDenied("You cannot change the game of a move.")
+        return super().perform_update(serializer)

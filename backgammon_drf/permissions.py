@@ -20,7 +20,9 @@ class IsPlayerOrReadOnly(permissions.BasePermission):
 
 
 class IsMostRecentMove(permissions.BasePermission):
-    def has_object_permission(self, _, __, obj):
+    def has_object_permission(self, request, __, obj):
+        if request.method in permissions.SAFE_METHODS:
+            return True
         if obj != obj.game.moves.latest('updated_at'):
             raise PermissionDenied("This is not the most recent move.")
         return True
