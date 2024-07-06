@@ -1,9 +1,13 @@
 # Name of project
 <!-- ![Multiple Device Demo](./readme-content/images/multi-device.png) -->
 ## Live Site
-<!-- [nameOfSite](siteURL)) -->
+
+[Tactical Rashers API](https://tactical-rashers-api-50ab26b13e4f.herokuapp.com/)
+
 ## Repository
-<!-- [repoLocation](repoLocation) -->
+
+[backgammon-back-end](https://github.com/DaveyJH/backgammon-back-end)
+
 ***
 
 ## Table of Contents
@@ -25,11 +29,16 @@
     - [Features Left to Implement](#features-left-to-implement)
   - [Database Model](#database-model)
   - [Technologies Used](#technologies-used)
+    - [Python Packages](#python-packages)
     - [Other Tech](#other-tech)
       - [*Windows Snipping Tool*](#windows-snipping-tool)
       - [*Visual Studio Code*](#visual-studio-code)
       - [VSCode Extensions](#vscode-extensions)
   - [Testing](#testing)
+    - [Manual Testing](#manual-testing)
+    - [Automated Testing](#automated-testing)
+      - [PEP8 Testing](#pep8-testing)
+      - [HTML, CSS and JavaScript](#html-css-and-javascript)
   - [Bugs](#bugs)
     - [Current](#current)
     - [Resolved](#resolved)
@@ -38,7 +47,6 @@
     - [VSCode](#vscode)
   - [Deployment](#deployment)
   - [Credits](#credits)
-    - [Content](#content)
     - [Media](#media)
     - [Acknowledgements](#acknowledgements)
     - [Personal Development](#personal-development)
@@ -172,6 +180,28 @@ have a straightforward structure.
 
 ## Technologies Used
 
+### Python Packages
+
+Some of the main packages used throughout the project:
+
+|         Package          |                       Use                        |
+|-------------------------:|--------------------------------------------------|
+|[django](https://www.djangoproject.com/)|web framework with effective PostgreSQL database handling methods|
+|[djangorestframework](https://www.django-rest-framework.org/)|powerful and flexible toolkit for building Web APIs|
+|[djangorestframework-simplejwt](https://www.django-rest-framework.org/)|JSON Web Token authentication plugin|
+|[django-filter](https://pypi.org/project/django-filter/)|allow `QuerySet` filtering from URL parameters|
+|[cloudinary](https://pypi.org/project/cloudinary/)|easy uploading of media files to Cloudinary|
+|[load-dotenv](https://pypi.org/project/load-dotenv/)|reads key-value pairs from a `.env` file|
+|[gunicon](https://pypi.org/project/gunicorn/)|Python WSGI HTTP Server for UNIX|
+|[psycopg2](https://pypi.org/project/psycopg2/)|PostgreSQL database adapter for Python|
+|                          |                                                  |
+
+*For a full list of installed Python packages, see
+[`requirements.txt`](https://github.com/DaveyJH/backgammon-back-end/blob/main/requirements.txt)*
+
+Most packages have relevant documentation hosted on the
+[Python package index](https://pypi.org/) site.
+
 ### Other Tech
 
 <!-- #### ScreenToGif -->
@@ -205,19 +235,54 @@ Links to the VSCode marketplace for each extension used throughout this project:
 
 ## Testing
 
-<!-- explain testing
-? item tested
-? expected result
-? how test was performed
-? actual result
-? differences
-? action required
-? re-test
-- more detail and better format required compared with project 1
-look at daisy's testing documentation and [webinar](https://us02web.zoom.us/rec/play/9FIKllHX2ZiQNFRhYPn_hBh_ZeA8964ZvIDLnhpKGAf1NLVc3_hBJ6zSL8Hv5Hx7ALnPtDmbg8CmFAs.YVsZ9LR_uI7OjEwH)-->
+### Manual Testing
 
-<!-- validation of html, css and script. -->
-<!-- lighthouse testing -->
+Manual testing was performed during the development cycle. As the database is
+fairly straightforward, there were very few bugs identified during the process.
+Testing consisted of logically creating, reading, updating and deleting records
+where necessary. Multiple users were created to allow testing of various
+relationships between the models.
+
+### Automated Testing
+
+The nature of the project allowed for fairly robust automated testing. A number
+of tests were written utilising the `APITestCase` class available through
+`rest_framework.test`. I was not aware of how straightforward the test-writing
+procedure would be for the application and would consider a TDD approach for
+future development. There were a few items that needed editing that were
+identified during the writing of tests. Those items have been updated.
+
+Tests were written in a logical order so as to allow the flow of the site to be
+written during the process. This allowed functions to be used to create users
+and games, reducing the need to duplicate code. However, many lines of code are
+similar in the tests and this is done with intention. The tests are clear,
+thorough, and easily maintained separately from each other.
+
+Please consult the `test.py` files for the test code, and consult
+[the `manage.py test` output file for all tests run](./docs/automated-tests.md).
+As shown within that file, 83 tests have been run on the database covering a
+wide range of functionality and defensive programming. The test time is fairly
+long due to the `DiceRolls` test that ensures dice rolls are random. I could not
+think of a more efficient (or certain) way of testing this feature, so 25 dice
+rolls are generated and compared for uniqueness and their correct parameters.
+
+#### PEP8 Testing
+
+The Python files have all been checked using [flake8](#vscode-extensions). As
+shown, the command `flake8 . --exclude .venv/,__pycache__/,**/migrations/**` was
+used to run a check on the entire project directory, excluding the directories
+passed in as arguments. No other errors or warnings are reported.  
+![flake8 results](docs/assets/images/flake8-clear.png)
+
+Doc strings and comments are included where I feel the logic or code needs
+explaining beyond its implicit readability, with closing brackets clearly
+showing where arguments etc. are finished. The only exceptions to this are the
+migration files which were generated by Django.
+
+#### HTML, CSS and JavaScript
+
+No HTML, CSS or JavaScript validation has been carried out on the API front end
+as this will not be utilised in the final project and is not my own code.
 
 ## Bugs
 
@@ -346,17 +411,26 @@ The site is now live and operational -->
 
 ## Credits
 
-### Content
-<!-- - the a comes from b -->
-<!-- - the c comes from d -->
 ### Media
-<!-- <a href="https://www.freepik.com/free-vector/illustration-summer-beach-object_2825295.htm#fromView=search&page=1&position=35&uuid=7af1b0c9-0057-4517-95e7-a4f45d178e31">Two dice image by rawpixel.com on Freepik</a> -->
-<!-- - the c comes from d -->
+
+- The default profile image is
+  [Two dice image by rawpixel.com on Freepik](https://www.freepik.com/free-vector/illustration-summer-beach-object_2825295.htm#fromView=search&page=1&position=35&uuid=7af1b0c9-0057-4517-95e7-a4f45d178e31)
+- The default game image was created by me in Microsoft Paint! (⌐■_■)
+- The ERD diagram was made using [drawio](#vscode-extensions)
+
 ### Acknowledgements
-<!-- - acknowledge a, found at [b](bURL), for c -->
-<!-- - acknowledge d, found at [e](eURL), for f -->
+
+Thanks to [@CluelessBiker](https://github.com/CluelessBiker), my mentor for the
+project, as she helped me focus on the MVP and gave great support regarding the
+project planning process.
+
+As always, the wonderful staff at [Code Institute](https://codeinstitute.net/)
+for introducing me to this framework and providing me with the foundations to
+start developing this API.
+
 ***
 
 ### Personal Development
 
-<!-- notes -->
+I am pleased with how quickly this project has gone together. I would enjoy
+working with the framework again and would approach things with a TDD mindset!
