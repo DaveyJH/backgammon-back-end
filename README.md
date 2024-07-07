@@ -47,6 +47,7 @@
   - [Development](#development)
     - [GitHub](#github)
     - [VSCode](#vscode)
+      - [Development `.env`](#development-env)
   - [Deployment](#deployment)
   - [Credits](#credits)
     - [Media](#media)
@@ -372,8 +373,8 @@ the relevant docs for various approaches.
 
 ![clone command](./docs/assets/images/clone-command.png)
 
-- Enter the `cd backgammon-back-end code . -r` to open the repository in the
-  current VSCode window.
+- Enter the command `cd backgammon-back-end code . -r` to open the repository in
+  the current VSCode window.
 
 ![open in VSCode command](./docs/assets/images/cd-backgammon-back-end.png)
 
@@ -385,11 +386,30 @@ the relevant docs for various approaches.
 - Install the requirements for the repository using
   `pip install -r requirements.txt`.
 
-![requirements installation]()
+![requirements installation](./docs/assets/images/pip-install-requirements.png)
 
 - Ensure you have created the necessary `env` variables in a `.env` file.
 
-![env file example]()
+![env file example](./docs/assets/images/env-example.png)
+
+#### Development `.env`
+
+As mentioned above in the [Python packages](#python-packages) section, I
+utilised a `.env` file for my environment variables. If you intend to run this
+application from a clone of the repository, you will need your own file with the
+following key-value pairs:
+
+|        key           |        value                                         |
+|----------------------|------------------------------------------------------|
+|SECRET_KEY            | a secret key - this can be generated using `python -c 'from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())'` within your terminal|
+|HOST                  |the IP address or host name where the server will be run|
+|CLOUDINARY_URL        |a Cloudinary account API Environment variable, available from a Cloudinary account dashboard|
+|DEVELOPMENT           |*optional* configures the authentication method of the django rest framework API and connects the django project to an db.sqlite3 instance for use in a development environment|
+|DEV                   |*optional* configures the response format of the django rest framework API to allow a front-end interactive representation|
+|CLIENT_ORIGIN_DEV     |*optional* allows cross-site http requests from an alternate URL to the server|
+
+*Additional key-value pairs are required for a deployed application. Please see
+the section below for more detail*
 
 ## Deployment
 
