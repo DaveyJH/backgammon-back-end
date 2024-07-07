@@ -46,6 +46,7 @@
   - [Bugs](#bugs)
     - [Current](#current)
     - [Resolved](#resolved)
+  - [Agile](#agile)
   - [Development](#development)
     - [GitHub](#github)
     - [VSCode](#vscode)
@@ -452,6 +453,27 @@ which the author was not a participant.
 ![an erroneous game instance](./docs/assets/images/user-able-to-move-in-wrong-game.png)
 
 ***
+
+## Agile
+
+A GitHub project was created for the site's development. The project is shared
+between the back-end API and the front-end React application. Labels have been
+used to help organise the tasks involved and can be filtered as needed. There
+are multiple views already available on the
+[Project](https://github.com/users/DaveyJH/projects/8/views/1).
+
+An Agile approach has been used to ensure an MVP has been created in time for
+release (project submission). Issues have sprint points assigned for their
+effort to complete and have been assigned to
+[Milestones](https://github.com/DaveyJH/backgammon-back-end/milestones?state=closed)
+to reflect a sprint process. Sprints were started with a total story point
+availability of 20 and reviewed at the end of the sprint. The sprint point
+availability for my efforts was adjusted to allow a maximum of 25 within a
+sprint as the initial value was not reflective of my ability.
+
+Separate views have been created for each sprint to allow a clear visual of the
+progress being made. Separate views for docs and user stories also exist for an
+overview.
 
 ## Development
 
