@@ -1,5 +1,7 @@
 # Name of project
-<!-- ![Multiple Device Demo](./readme-content/images/multi-device.png) -->
+
+![API welcome note](./docs/assets/images/api-welcome.png)
+
 ## Live Site
 
 [Tactical Rashers API](https://tactical-rashers-api-50ab26b13e4f.herokuapp.com/)
@@ -71,8 +73,9 @@ purpose of completing my Code Institute project.***
 
 ### Tactical Rashers API
 
-Tactical Rashers : a backgammon players' site. The site should allow users to
-play backgammon in a manner similar to
+Tactical Rashers : a backgammon players' site.  
+
+The site should allow users to play backgammon in a manner similar to
 ["Chess by post"](https://en.wikipedia.org/wiki/Correspondence_chess). Users
 will be able to play private games, with dice rolls handled via the app, and
 comment with their intended moves. They should be able to update the main image
@@ -170,11 +173,12 @@ A PostgreSQL database has been used for storing the various data required for
 the API.
 
 The database structure has been mapped out using an ERD diagram generated using
-the [drawio](#vscode-extensions) extension in VSCode. Many of the entities will be linked
-back through the owner (Django auth's `User` model) which allows the database to
-have a straightforward structure.
+the [drawio](#vscode-extensions) extension in VSCode. Many of the entities will
+be linked back through the owner (Django auth's `User` model) which allows the
+database to have a straightforward structure. A few fields are missing from the
+ERD that record creation times and update times.
 
-![entity relationship diagram](./docs/assets/images/erd-v1.1.png)
+![entity relationship diagram](./docs/assets/images/erd-v2.png)
 
 ***
 
@@ -245,8 +249,8 @@ relationships between the models.
 
 ### Automated Testing
 
-The nature of the project allowed for fairly robust automated testing. A number
-of tests were written utilising the `APITestCase` class available through
+The nature of the project allowed for fairly robust automated testing. Several
+tests were written utilising the `APITestCase` class available through
 `rest_framework.test`. I was not aware of how straightforward the test-writing
 procedure would be for the application and would consider a TDD approach for
 future development. There were a few items that needed editing that were
@@ -288,36 +292,45 @@ as this will not be utilised in the final project and is not my own code.
 
 ### Current
 
-<!-- current bugs -->
+At the time of deployment, no current bugs have been found. Some features are
+yet to be implemented, but all functionality is working as intended for this
+iteration.
 
-<!-- - bugOne explanation
-
-*notes on explanation* -->
-***
-<!-- - bugTwo explanation
-
-*notes on explanation* -->
 ***
 
 ### Resolved
 
-<!-- resolved bugs -->
-<!-- todo 1. game must have a winner selected
+1. Winner relationships were incorrect
 
-solve with null/blank = True
+![a game needed a winner](./docs/assets/images/must-have-winner.png)
 
-![bugOneImg](bugOneImgURL)
+*Commit -
+**[a925c74](https://github.com/DaveyJH/backgammon-back-end/blob/a925c74b4500b2c6c284b22b54b080d4091838e3/winners/models.py)***
 
-*Commit - **[sha](commit link with highlighted lines)** - explanation of fix* -->
+During manual testing and the improvement of back-end defensive programming, it
+became evident that the `Winner` model was incorrectly configured. This was
+resolved by implementing a `ForeignKeyField` with `unique=True`. This generates
+a warning that a `OneToOneField` is more appropriate, but that would not allow
+for a `Game` with no `Winner` without allowing it the other way as well
+(`Winner` without a `Game`).  
+The warning (`fields.W342`) has been silenced in the `settings.py`
+file [***[421eb47](https://github.com/DaveyJH/backgammon-back-end/commit/421eb473e0b724bfe28079a498983ddc6d09a34d)***].
+
 ***
-<!-- todo user could post to game they were not a part of
 
-solved with custom create method instead of use of custom permissions (no good
-for create)
+*Commit - **[c64e2aa](https://github.com/DaveyJH/backgammon-back-end/commit/c64e2aa3a1d6a8ac6075b3e74219742609b9b326#diff-acc9f5d2892f3a2255a022dc3d77e88d81eb60bb3b1d0e6271a1dd3b0629815eL25-L26)***
 
-![bugTwoImg](bugTwoImgURL)
+During the creation of automated tests, it was identified that players could
+potentially create games that did not include themselves as a participant.
+Although this is not a breaking issue, and would likely require some front-end
+code manipulation when submitting a request, it was simple enough to resolve
+with the addition of a custom `perform_create` method. The discovery of this bug
+led to another few custom methods being written to prevent erroneous instances
+from being created. The image below shows a `Move` being added to a game in
+which the author was not a participant.
 
-*Commit - **[sha](commit link with highlighted lines)** - explanation of fix* -->
+![an erroneous game instance](./docs/assets/images/user-able-to-move-in-wrong-game.png)
+
 ***
 
 ## Development
