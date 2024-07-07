@@ -28,8 +28,10 @@
     - [Initial Concept](#initial-concept)
   - [Features](#features)
     - [Existing Features](#existing-features)
-    - [Features Left to Implement](#features-left-to-implement)
+    - [Future Features](#future-features)
+    - [Features beyond the scope of the API](#features-beyond-the-scope-of-the-api)
   - [Database Model](#database-model)
+    - [Production Database](#production-database)
   - [Technologies Used](#technologies-used)
     - [Python Packages](#python-packages)
     - [Other Tech](#other-tech)
@@ -47,7 +49,7 @@
   - [Development](#development)
     - [GitHub](#github)
     - [VSCode](#vscode)
-      - [Development `.env`](#development-env)
+    - [Development `.env`](#development-env)
   - [Deployment](#deployment)
   - [Credits](#credits)
     - [Media](#media)
@@ -95,10 +97,10 @@ intends to provide a robust back-end API via the Django Rest Framework.
 
 Some example user stories that will affect the design. Please consult the
 [GitHub project board](https://github.com/users/DaveyJH/projects/8/views/4) for
-a full list.
+a full list of user concerns written in the form of GitHub issues.
 
-Below is a non-exhaustive list of some of the user stories. These are the key
-user stories that must be achieved for an MVP to be considered complete:
+Below is a non-exhaustive list of some of the user stories. Some of these are
+key user stories that must be achieved for an MVP to be considered complete:
 
 #### First Time User
 
@@ -142,31 +144,133 @@ be considered dependent on time constraints.
 
 ### Existing Features
 
-<!-- - Feature 1 - allows users X to achieve Y, by having them fill out Z -->
-<!-- 1. feature1
->*"User... **story quote**"*
-- *explanation*-->
-F1
-***
-<!-- - Feature 2 - allows users X to achieve Y, by having them fill out Z -->
-<!-- 1. feature2
->*"User... **story quote**"*
-- *explanation*
-  ![imgName](imgURL)
--->
-F2
+- Create account
+  > *"As a **potential user**, I would like to be **able to create a profile** so
+  > that I **am able to play**"*
+
+  New users of the site can create a profile which enables the creation of, and
+  participation in, games.
+
+- Log in
+  > *"As a **returning user**, I would like to **log in to my account** so that I
+  > can **interact with the features of the site**"*
+
+  Existing users of the site can log in to their account.
+
+- Log out
+  > *"As a **signed in user**, I would like to **log out of my account** so that I
+  > can **protect my account on shared devices**"*
+
+  Existing users of the site can log out of their account.
+
+- Create game
+  > *"As a **returning user**, I would like **to play a game with another
+  > player** so that I can **enjoy the game of backgammon**"*
+
+  Existing users can create games with other players.
+
+- Find relevant games
+  > *"As a **returning user**, I would like **to play a game with another
+  > player** so that I can **enjoy the game of backgammon**"*
+
+  > *"As a **returning user**, I would like to **view my currently active games**
+  > so that I can **track the progress of, and make new moves on, my games in
+  > play**"*
+
+  Games can be filtered and searched.
+
+- Roll dice
+  > *"As a **returning user**, I would like **to play a game with another
+  > player** so that I can **enjoy the game of backgammon**"*
+
+  Dice rolls can be made in games.
+
+- Make a move
+  > *"As a **returning user**, I would like **to play a game with another
+  > player** so that I can **enjoy the game of backgammon**"*
+
+  Moves can be noted in games.
+
+- Winner selection
+  > *"As a **returning user**, I would like **to play a game with another
+  > player** so that I can **enjoy the game of backgammon**"*
+
+  Game winners can be specified.
+
+- Mark completed game
+  > *"As a **returning user**, I would like **to play a game with another
+  > player** so that I can **enjoy the game of backgammon**"*
+
+  Games can be marked as active/complete.
+
+- Update game image
+  > *"As a **returning user**, I would like **to play a game with another
+  > player** so that I can **enjoy the game of backgammon**"*
+
+  Game images can be updated by players.
+
+- Profile editing
+  > *"As a **potential user**, I would like to be **able to create a profile** so
+  > that I **am able to play**"*
+
+  Users can update their profile with some information about themself and an
+  avatar.
+
+- Display games records
+  > *"As a **returning user**, I would like to **view my currently active games**
+  > so that I can **track the progress of, and make new moves on, my games in
+  > play**"*
+
+  Games can be filtered and searched and winners and move counts are tracked.
+
 ***
 
-### Features Left to Implement
+### Future Features
 
-<!-- features left to implement -->
-<!-- 1. Explain desired feature 1
-  - *Notes regarding feature*
-  - Explanation of feature need etc. -->
-<!-- 2. Explain desired feature 2
-  - *Notes regarding feature*
-  - Explanation of feature need etc. -->
+- Display game requests
+  > *"As a **returning user**, I would like **to play a game with another
+  > player** so that I can **enjoy the game of backgammon**"*
+
+  Games can be initiated with any other player in the current iteration. It
+  would be nice to implement a "request" feature that allows the requested
+  player to accept/reject the invitation.
+
+- Comment on completed games
+  > *"As a **returning user**, I would like **to comment on completed games** so
+  > that I can **interact with other users of the site**"*
+
+  This has not been worked on for this iteration. Adding this feature would
+  encourage a more social interaction with the site. A `Comment` model would be
+  similar to the `Move` model and would only be available on games that are
+  marked as complete (not active).
+
+- Mark game as public
+  > *"As a **returning user**, I would like **to play a game with another
+  > player** so that I can **enjoy the game of backgammon**"*
+
+  > *"As a **returning user**, I would like **to comment on completed games** so
+  > that I can **interact with other users of the site**"*
+
+  This feature would allow all site users to view currently active games and,
+  depending on the features permitted by the players, allow comments from
+  non-players during the game. For this iteration, games will only be available
+  to public and non-player users once they are marked as not active.
+
 ***
+
+### Features beyond the scope of the API
+
+- Rules
+  > *"As a **potential player**, I would like to be able to **read the rules of
+  > the game** so that I **know how to play**"*
+
+  This will be handled by the front-end application.
+
+- Log in status
+  > *"As a **returning user**, I would like to **quickly determine whether I am
+  > logged in** so that I can **log in / out as needed**"*
+
+  This will be handled by the front-end application.
 
 ## Database Model
 
@@ -272,11 +376,11 @@ procedure would be for the application and would consider a TDD approach for
 future development. There were a few items that needed editing that were
 identified during the writing of tests. Those items have been updated.
 
-Tests were written in a logical order so as to allow the flow of the site to be
-written during the process. This allowed functions to be used to create users
-and games, reducing the need to duplicate code. However, many lines of code are
-similar in the tests and this is done with intention. The tests are clear,
-thorough, and easily maintained separately from each other.
+Tests were written in a logical order to allow the flow of the site to be
+incorporated during the process. This allowed functions to be used to create
+users and games, reducing the need to duplicate code. However, many lines of
+code are similar in the tests and this is done with intention. The tests are
+clear, thorough, and easily maintained separately from each other.
 
 Please consult the `test.py` files for the test code, and consult
 [the `manage.py test` output file for all tests run](./docs/automated-tests.md).
@@ -407,7 +511,7 @@ the relevant docs for various approaches.
 
 ![env file example](./docs/assets/images/env-example.png)
 
-#### Development `.env`
+### Development `.env`
 
 As mentioned above in the [Python packages](#python-packages) section, I
 utilised a `.env` file for my environment variables. If you intend to run this
@@ -428,33 +532,53 @@ the section below for more detail*
 
 ## Deployment
 
-<!-- !check this section, may need adjusting as using additional languages -->
+The API is deployed on Heroku; the steps below detail the process to achieve
+this.
 
-<!-- **Github Pages**
-- Navigate to the relevant GitHub Repository [here](github repo URL)
-- Select "Settings" from the options below the name of the repository
+1. Navigate to your [Heroku dashboard](https://dashboard.heroku.com/apps)
+1. Click "New" and select "Create new app".  
+  ![New heroku](./docs/assets/images/heroku-new.png)
+1. Input a meaningful name for your app and choose the region best suited to
+  your location.  
+  ![Create new app](./docs/assets/images/heroku-create.png)
+1. Select "Settings" from the tabs.  
+  ![Settings tab](./docs/assets/images/heroku-settings.png)
+1. Click "Reveal Config Vars".  
+  ![Config vars button](./docs/assets/images/heroku-config-vars.png)
+1. Input the required key-value pairs from the `.env` file. **Ensure DEBUG
+   and DEVELOPMENT are not included**.
+  ![Config vars](./docs/assets/images/heroku-config-var.png)
+   Keys to include:
+    - `SECRET_KEY` (*generate a new key for production*)
+    - `CLOUDINARY_URL`
+    - `HOST` (*for this value, right click "Open app" and copy the link address,
+      deleting "`https://`"*)
+    - `DATABASE_URL` (*see [Production Database](#production-database) section*)
+1. Select "Deploy" from the tabs.  
+![Settings tab](./docs/assets/images/heroku-deploy-tab.png)
+1. Select "GitHub - Connect to GitHub" from deployment methods.  
+ ![Select GitHub](./docs/assets/images/heroku-select-github.png)
+1. Click "Connect to GitHub" in the created section.  
+ ![Connect to GitHub](./docs/assets/images/heroku-connect-github.png)
+1. Search for the GitHub repository by name.  
+ ![Heroku repo search](./docs/assets/images/heroku-search.png)
+1. Click to connect to the relevant repo.  
+ ![Heroku connect to repo](./docs/assets/images/heroku-connect-repo.png)
+1. Either click `Enable Automatic Deploys` for automatic deploys, or `Deploy
+ Branch` to deploy manually. Manually deployed branches will need
+ re-deploying each time the repo is updated.  
+ ![Heroku deploy branch](./docs/assets/images/heroku-deploy-branch.png)
+1. Click `View` to view the deployed site.  
+    ![Heroku view](./docs/assets/images/heroku-view.png)
 
-![Settings Snip](./readme-content/images/github-settings.png)
-- Select "Pages" from the left hand menu
+The live site can also be accessed from your repo in GitHub from the
+Deployments section of the repo.
 
-![Pages Snip](./readme-content/images/pages-select.png)
-- Select "Branch: main" as the source and leave the directory as "/(root)"
+- Click the link to view the deployment history.
+  ![GitHub Deployments](./docs/assets/images/github-deployments.png)
+- Click the provided URL.
+  ![GitHub view deployment](./docs/assets/images/github-view-deployment.png)
 
-![Source Snip](./readme-content/images/pages-source.png)
-
-- Click the Save button
-
-- Take note of the URL provided
-
-![URL Snip](./readme-content/images/pages-url.png)
-
-- GitHub takes a short while to publish the page. The bar turns green if you refresh the pages tab and the page has been deployed
-
-![Confirmed Deployment Snip](./readme-content/images/pages-deployed.png)
-- Click the link or copy the URL to a browser to reach the deployed page
-https://daveyjh.github.io/ci-portfolio-one-v4/
-
-The site is now live and operational -->
 ***
 
 ## Credits
