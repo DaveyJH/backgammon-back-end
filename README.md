@@ -179,7 +179,22 @@ be linked back through the owner (Django auth's `User` model) which allows the
 database to have a straightforward structure. A few fields are missing from the
 ERD that record creation times and update times.
 
-![entity relationship diagram](./docs/assets/images/erd-v2.png)
+![entity relationship diagram](./docs/assets/images/erd-v2.1.png)
+
+### Production Database
+
+During development, the SQLite3 database provisioned by Django has been used.
+For the production build, an external PostgreSQL instance is necessary. Code
+Institute has provided a tool for their students that provides such a database.
+As the tool is only for students, and the steps are well defined within the
+application, the procedure to create this has not been detailed here. The URL
+provided via the tool meets the format required for the `dj-database-url`
+package: `postgres://<username>:<password>@<host>/<database_name>`
+
+*Many other PostgreSQL hosts will provide a URL in this format if required.*
+
+This URL is used in any non-development environment and is set as the
+`DATABASE_URL` environment variable.
 
 ***
 
