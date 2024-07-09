@@ -3,6 +3,7 @@ from .models import DiceRoll
 
 
 class DiceRollSerializer(serializers.ModelSerializer):
+    """Serializer for the DiceRoll model."""
 
     class Meta:
         model = DiceRoll

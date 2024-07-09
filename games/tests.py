@@ -9,6 +9,7 @@ from backgammon_drf.test_setup import (
 
 
 class GameListViewTests(APITestCase):
+    """Test the GameListView functionality."""
     def setUp(self):
         create_three_users()
 
@@ -149,6 +150,7 @@ class GameListViewTests(APITestCase):
 
 
 class GameDetailViewTests(APITestCase):
+    """Test the GameDetailView functionality."""
     def setUp(self):
         create_three_users()
         create_test_user_1_vs_test_user_2_game()

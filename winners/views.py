@@ -8,6 +8,7 @@ from .filters import WinnerFilter
 
 
 class WinnerList(ListCreateAPIView):
+    """List and create winners."""
     serializer_class = WinnerSerializer
     queryset = Winner.objects.all()
     filter_backends = [

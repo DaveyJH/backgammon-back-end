@@ -4,6 +4,7 @@ from games.models import Game
 
 
 class ProfileSerializer(serializers.ModelSerializer):
+    """Serializer for the Profile model."""
     owner = serializers.ReadOnlyField(source="owner.username")
     is_owner = serializers.SerializerMethodField()
     active_games_count = serializers.SerializerMethodField()

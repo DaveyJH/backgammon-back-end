@@ -8,6 +8,7 @@ from backgammon_drf.test_setup import (
 
 
 class MoveListViewTests(APITestCase):
+    """Test the MoveListView functionality."""
     def setUp(self):
         create_three_users()
 
@@ -88,6 +89,7 @@ class MoveListViewTests(APITestCase):
 
 
 class MoveDetailViewTests(APITestCase):
+    """Test the MoveDetailView functionality."""
     def setUp(self):
         create_three_users()
 

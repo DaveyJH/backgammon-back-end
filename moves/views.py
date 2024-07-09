@@ -16,6 +16,7 @@ from .filters import MoveFilter
 
 
 class MoveList(ListCreateAPIView):
+    """List and create moves."""
     serializer_class = MoveSerializer
     permission_classes = [IsAuthenticatedOrReadOnly]
     queryset = Move.objects.all().order_by("-updated_at")
@@ -40,6 +41,7 @@ class MoveList(ListCreateAPIView):
 
 
 class MoveDetail(RetrieveUpdateDestroyAPIView):
+    """Retrieve, update, and delete a move."""
     serializer_class = MoveSerializer
     permission_classes = [IsOwnerOrReadOnly, IsMostRecentMove]
     queryset = Move.objects.all()

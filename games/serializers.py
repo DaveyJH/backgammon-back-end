@@ -5,6 +5,7 @@ from moves.models import Move
 
 
 class GameSerializer(serializers.ModelSerializer):
+    """Serializer for the Game model."""
     all_moves = serializers.SerializerMethodField()
     latest_move_id = serializers.SerializerMethodField()
     time_since_last_move = serializers.SerializerMethodField()

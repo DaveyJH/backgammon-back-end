@@ -9,6 +9,7 @@ from .filters import DiceRollFilter
 
 
 class DiceList(ListCreateAPIView):
+    """List and create dice rolls."""
     serializer_class = DiceRollSerializer
     permission_classes = [IsAuthenticatedOrReadOnly]
     queryset = DiceRoll.objects.all()

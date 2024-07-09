@@ -8,6 +8,7 @@ from games.models import Game
 
 
 class WinnerFilter(FilterSet):
+    """Filter to allow humnan-friendly query strings for the Winner model."""
     winner = ChoiceFilter(
         label="Winner",
         field_name="owner__profile",

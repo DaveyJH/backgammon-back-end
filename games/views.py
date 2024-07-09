@@ -10,6 +10,7 @@ from .filters import GameFilter
 
 
 class GameList(ListCreateAPIView):
+    """List and create games."""
     serializer_class = GameSerializer
     permission_classes = [IsAuthenticatedOrReadOnly]
     queryset = Game.objects.all()
@@ -36,6 +37,7 @@ class GameList(ListCreateAPIView):
 
 
 class GameDetail(RetrieveUpdateAPIView):
+    """Retrieve and update a game."""
     serializer_class = GameSerializer
     permission_classes = [IsPlayerOrReadOnly]
     queryset = Game.objects.all()

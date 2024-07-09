@@ -7,6 +7,7 @@ from backgammon_drf.test_setup import (
 
 
 class WinnerListViewTests(APITestCase):
+    """Test the WinnerListView functionality."""
     def setUp(self):
         create_three_users()
 

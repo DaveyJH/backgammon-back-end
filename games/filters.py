@@ -8,6 +8,7 @@ from profiles.models import Profile
 
 
 class GameFilter(FilterSet):
+    """Filter to allow humnan-friendly query strings for the Game model."""
     player1 = ChoiceFilter(
         label="Player 1",
         field_name="player1__profile",

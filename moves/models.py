@@ -4,6 +4,7 @@ from games.models import Game
 
 
 class Move(models.Model):
+    """Game move model."""
     owner = models.ForeignKey(
         User,
         on_delete=models.CASCADE,

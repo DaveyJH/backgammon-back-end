@@ -5,6 +5,7 @@ from .models import Profile
 
 
 class ProfileListViewTests(APITestCase):
+    """Test the ProfileListView functionality."""
     def setUp(self):
         create_three_users()
 
@@ -53,6 +54,7 @@ class ProfileListViewTests(APITestCase):
 
 
 class ProfileDetailViewTests(APITestCase):
+    """Test the ProfileDetailView functionality."""
     def setUp(self):
         create_three_users()
 

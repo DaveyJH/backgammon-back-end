@@ -3,6 +3,7 @@ from .models import Winner
 
 
 class WinnerSerializer(serializers.ModelSerializer):
+    """Serializer for the Winner model."""
     is_owner = serializers.SerializerMethodField()
 
     def get_is_owner(self, obj):

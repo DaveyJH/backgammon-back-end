@@ -7,6 +7,7 @@ from backgammon_drf.test_setup import (
 
 
 class DiceRollListViewTests(APITestCase):
+    """Test the DiceRollListView functionality."""
     def setUp(self):
         create_three_users()
 

@@ -4,6 +4,7 @@ from games.models import Game
 
 
 class DiceRollFilter(FilterSet):
+    """Filter to allow humnan-friendly query strings for the DiceRoll model."""
     game = ChoiceFilter(
         label="Game",
         field_name="game__id",
