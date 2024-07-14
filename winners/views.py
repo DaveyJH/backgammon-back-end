@@ -27,4 +27,4 @@ class WinnerList(ListCreateAPIView):
         if self.request.user not in [game_obj.player1, game_obj.player2]:
             raise PermissionDenied("You are not a player in this game.")
 
-        serializer.save(owner=self.request.user)
+        serializer.save()

@@ -29,7 +29,7 @@ class GameSerializer(serializers.ModelSerializer):
 
     def get_winner(self, obj):
         try:
-            return obj.winner.first().id
+            return obj.winner.first().owner.id
         except AttributeError:
             return None
 
