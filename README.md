@@ -527,7 +527,7 @@ the relevant docs for various approaches.
 
 ![clone command](./docs/assets/images/clone-command.png)
 
-- Enter the command `cd backgammon-back-end code . -r` to open the repository in
+- Enter the command `cd backgammon-back-end && code . -r` to open the repository in
   the current VSCode window.
 
 ![open in VSCode command](./docs/assets/images/cd-backgammon-back-end.png)
@@ -596,6 +596,9 @@ this.
     - `HOST` (*for this value, right-click "Open app" and copy the link address,
       deleting "`https://`"*)
     - `DATABASE_URL` (*see [Production Database](#production-database) section*)
+    - `CLIENT_ORIGIN` (*production - this will be the URL of your front-end app*)
+    - `CLIENT_ORIGIN_DEV` (*development - this will be the URL of your front-end development
+      server*)
 1. Select "Deploy" from the tabs.  
 ![Settings tab](./docs/assets/images/heroku-deploy-tab.png)
 1. Select "GitHub - Connect to GitHub" from deployment methods.  
