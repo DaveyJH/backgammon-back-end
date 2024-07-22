@@ -1,4 +1,4 @@
-# Name of project
+# Tactical Rashers API
 
 ![API welcome note](./docs/assets/images/api-welcome.png)
 
@@ -14,13 +14,13 @@
 
 ## Table of Contents
 
-- [Name of project](#name-of-project)
+- [Tactical Rashers API](#tactical-rashers-api)
   - [Live Site](#live-site)
   - [Repository](#repository)
   - [Table of Contents](#table-of-contents)
   - [Objective](#objective)
   - [Brief](#brief)
-    - [Tactical Rashers API](#tactical-rashers-api)
+    - [Tactical Rashers API](#tactical-rashers-api-1)
   - [UX − User Experience Design](#ux--user-experience-design)
     - [User Requirements](#user-requirements)
       - [First Time User](#first-time-user)
